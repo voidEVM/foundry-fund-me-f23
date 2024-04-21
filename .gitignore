@@ -12,3 +12,8 @@ docs/
 
 # Dotenv file
 .env
+
+help.txt
+
+broadcast/
+lib/
