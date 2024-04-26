@@ -4,12 +4,6 @@ pragma solidity ^0.8.18;
 // Integration tests are when we test a lot of your interactios, tests combinations
 // of systems
 
-/**
- * @title 
- * @author 
- * @notice 
- */
-
 import {Test, console} from "forge-std/Test.sol";
 import {FundMe} from "../../src/FundMe.sol";
 import {DeployFundMe} from "../../script/DeployFundMe.s.sol";

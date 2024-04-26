@@ -14,7 +14,7 @@ contract DeployFundMe is Script{
     // As we know, in order to run a script we`re need run function, run is now going
     // to return a FundMe contract. All we have to do is update how we deploy in
     // here and our tests will deploy it the exact same way
-    // ref.9
+    
     function run() external returns (FundMe) {
         // create a mock contract
         HelperConfig helperConfig = new HelperConfig();
@@ -32,7 +32,7 @@ contract DeployFundMe is Script{
         vm.startBroadcast();
         // After startBroadcas() -> real tx!
         // grabbing right address from the HelperConfig
-        FundMe fundMe = new FundMe(ethUsdPriceFeed); // ref.8
+        FundMe fundMe = new FundMe(ethUsdPriceFeed); 
         vm.stopBroadcast();
         return fundMe;
     }

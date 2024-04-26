@@ -31,7 +31,7 @@ contract FundMe {
     // Could we make this constant?  /* hint: no! We should make it immutable! */
     address private immutable  i_owner;
     uint256 public constant MINIMUM_USD = 5 * 10 ** 18; // 5e18
-    AggregatorV3Interface private s_priceFeed;// ref.1 (s_ storage/state var)
+    AggregatorV3Interface private s_priceFeed;// (s_ storage/state var)
 
     // Events (we have none!)
 
@@ -52,15 +52,15 @@ contract FundMe {
     //// private
     //// view / pure
 
-      // priceFeed object depend on the chain that we`re on   
+    // priceFeed object depend on the chain that we`re on
+    // we`re pass a priceFeed in, so that we can deploy contract any chain we want
       constructor(address priceFeed) {
         i_owner = msg.sender;
-        s_priceFeed = AggregatorV3Interface(priceFeed);// ref.2
+        s_priceFeed = AggregatorV3Interface(priceFeed);
     }
 
     function fund() public payable {
-        // 
-        require(msg.value.getConversionRate(s_priceFeed) >= MINIMUM_USD, // ref.7
+        require(msg.value.getConversionRate(s_priceFeed) >= MINIMUM_USD,
         "You need to spend more ETH!");
         // require(PriceConverter.getConversionRate(msg.value) >= MINIMUM_USD, "You need to spend more ETH!");
         s_addressToAmountFunded[msg.sender] += msg.value;
@@ -71,7 +71,7 @@ contract FundMe {
         // this contract address only exists on Sepolia, but we`re testing on not Sepolia, we`re testing on our local chain
         // del. AggregatorV3Interface priceFeed = AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306);
         // call the version function directly on s_priceFeed variable
-        return s_priceFeed.version();// ref.3
+        return s_priceFeed.version();
     }
     
     
@@ -134,9 +134,9 @@ contract FundMe {
 
     }
 
-    /**
-     * View / Pure functions section (Gettes)
-     */
+    
+    // View / Pure functions section (Gettes)
+     
 
     /**
      * @notice Gets the amount that an address has funded
@@ -167,18 +167,8 @@ contract FundMe {
 // 6. Hash with keccak256
 // 7. Yul / Assembly
 
-// ------------------------------------------------------------
-/*
-Functions Order:
- constructor
- receive
- fallback
- external
- public
- internal
- private
- view / pure
- */
+
+
 
 
 
